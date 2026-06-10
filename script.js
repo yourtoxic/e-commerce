@@ -66,21 +66,36 @@ const buttonArea = document.querySelector(".button-area");
 
 function moveButton() {
 
-    const maxX = buttonArea.clientWidth - noBtn.offsetWidth;
-    const maxY = buttonArea.clientHeight - noBtn.offsetHeight;
+    const padding = 20;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const maxX =
+        buttonArea.clientWidth -
+        noBtn.offsetWidth -
+        padding;
+
+    const maxY =
+        buttonArea.clientHeight -
+        noBtn.offsetHeight -
+        padding;
+
+    const x =
+        Math.random() * (maxX - padding) + padding;
+
+    const y =
+        Math.random() * (maxY - padding) + padding;
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
 
-// Every 300ms button moves automatically
-setInterval(moveButton, 300);
+// Initial position
+moveButton();
+
+// Smooth movement every 1 second
+setInterval(moveButton, 1000);
 
 // Extra protection
-["click", "touchstart", "touchend"].forEach(event => {
+["click","touchstart","touchend"].forEach(event => {
 
     noBtn.addEventListener(event, (e) => {
         e.preventDefault();
@@ -88,25 +103,6 @@ setInterval(moveButton, 300);
         moveButton();
     });
 });
-// Desktop hover
-noBtn.addEventListener("mouseenter", moveButton);
-
-// Mobile touch
-noBtn.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    moveButton();
-
-    if(navigator.vibrate){
-        navigator.vibrate(50);
-    }
-});
-
-// Backup click protection
-noBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    moveButton();
-});
-
 // Extra desktop effect
 document.addEventListener("mousemove", (e) => {
 
