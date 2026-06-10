@@ -76,6 +76,24 @@ function moveButton() {
     noBtn.style.top = y + "px";
 }
 
+// Desktop
+noBtn.addEventListener("mouseenter", moveButton);
+
+// Mobile
+["touchstart","touchend","click"].forEach(event => {
+
+    noBtn.addEventListener(event, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        moveButton();
+
+        if(navigator.vibrate){
+            navigator.vibrate(50);
+        }
+    });
+});
+
 // Desktop hover
 noBtn.addEventListener("mouseenter", moveButton);
 
