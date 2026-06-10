@@ -183,12 +183,12 @@ section{
 }
 
 .button-area{
-    position:relative;
-    width:100%;
-    max-width:1000px;
-    height:500px;
-    margin:50px auto 0;
-    overflow:hidden;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+    margin: 50px auto 0;
+    overflow: hidden;
 }
 
 .yesBtn,
@@ -219,8 +219,8 @@ section{
         inset 0 1px 1px rgba(255,255,255,.25);
 
     transition:
-        left 0.8s cubic-bezier(.22,.61,.36,1),
-        top 0.8s cubic-bezier(.22,.61,.36,1);
+        left 0.7s cubic-bezier(.22,.61,.36,1),
+        top 0.7s cubic-bezier(.22,.61,.36,1);
 }
 
 /* Let's Talk */
