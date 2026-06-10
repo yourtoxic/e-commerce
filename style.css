@@ -193,29 +193,69 @@ section{
 
 .yesBtn,
 .noBtn{
-    background:#ef4444;
-    color:white;
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%, -50%);
-    touch-action:none;
-    user-select:none;
+    padding:16px 38px;
+    border:none;
+    border-radius:60px;
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    transition:all 0.35s ease;
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.25),
+    inset 0 1px 1px rgba(255,255,255,.25);
 }
+
+/* Let's Talk */
 
 .yesBtn{
-    background:#22c55e;
+    background:linear-gradient(
+        135deg,
+        #ff6ec4,
+        #7873f5
+    );
+
     color:white;
-    position:relative;
-    z-index:2;
 }
+
+.yesBtn:hover{
+    transform:translateY(-4px) scale(1.05);
+
+    box-shadow:
+    0 15px 35px rgba(120,115,245,.4);
+}
+
+/* Still Angry */
 
 .noBtn{
-    background:#ef4444;
-    color:white;
     position:absolute;
+
+    background:linear-gradient(
+        135deg,
+        #ff9966,
+        #ff5e62
+    );
+
+    color:white;
+
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    box-shadow:
+    0 10px 30px rgba(255,94,98,.35);
+
+    user-select:none;
+    touch-action:none;
 }
 
+.noBtn:hover{
+    transform:translate(-50%,-50%) scale(1.08);
+}
 .heart{
     position:fixed;
     color:#ff4da6;
