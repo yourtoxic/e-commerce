@@ -13,7 +13,7 @@ body{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
 
     color: black;
     overflow-x: hidden;
@@ -183,23 +183,31 @@ section{
 }
 
 .button-area{
-    position:relative;
-    height:200px;
-    margin-top:40px;
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 300px;
+    margin: 40px auto 0;
+    overflow: hidden;
 }
 
 .yesBtn,
 .noBtn{
-    padding:15px 30px;
-    border:none;
-    border-radius:50px;
-    cursor:pointer;
-    font-size:18px;
+    background:#ef4444;
+    color:white;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    touch-action:none;
+    user-select:none;
 }
 
 .yesBtn{
     background:#22c55e;
     color:white;
+    position:relative;
+    z-index:2;
 }
 
 .noBtn{
