@@ -14,274 +14,84 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
-
     color: black;
     overflow-x: hidden;
 }
 
-.stars{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    overflow:hidden;
-    z-index:-1;
-}
+/* অন্যান্য সেকশন একই থাকবে */
+.stars{ position:fixed; width:100%; height:100%; top:0; left:0; overflow:hidden; z-index:-1; }
+.star{ position:absolute; width:3px; height:3px; background:white; border-radius:50%; animation:twinkle 4s infinite; }
+@keyframes twinkle{ 0%,100%{opacity:.2;} 50%{opacity:1;} }
+.hero{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:20px; }
+.hero h1{ font-size:4rem; margin-bottom:20px; }
+.typewriter{ font-size:1.3rem; max-width:700px; line-height:2; min-height:120px; }
+.btn{ margin-top:30px; padding:15px 30px; border:none; border-radius:50px; background:black; color:white; cursor:pointer; font-size:18px; transition:.3s; }
+.btn:hover{ transform:scale(1.1); }
+.music{ position:fixed; top:20px; right:20px; z-index:1000; }
+section{ padding:100px 10%; }
+.title{ text-align:center; font-size:3rem; margin-bottom:50px; }
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.card{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:30px; border-radius:20px; transition:.3s; }
+.card:hover{ transform:translateY(-10px); }
+.flip-container{ display:flex; justify-content:center; flex-wrap:wrap; gap:30px; }
+.flip-card{ width:280px; height:180px; perspective:1000px; }
+.flip-inner{ width:100%; height:100%; transition:1s; transform-style:preserve-3d; position:relative; }
+.flip-card:hover .flip-inner{ transform:rotateY(180deg); }
+.front, .back{ position:absolute; width:100%; height:100%; border-radius:20px; display:flex; justify-content:center; align-items:center; text-align:center; padding:20px; backface-visibility:hidden; }
+.front{ background:#6946a6; }
+.back{ background:#428475; transform:rotateY(180deg); }
+.reason-box{ text-align:center; }
+#reason{ font-size:1.4rem; margin:30px; }
+.final{ max-width:800px; margin:auto; text-align:center; line-height:2; }
 
-.star{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    animation:twinkle 4s infinite;
-}
-
-@keyframes twinkle{
-    0%,100%{opacity:.2;}
-    50%{opacity:1;}
-}
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
-
-.hero h1{
-    font-size:4rem;
-    margin-bottom:20px;
-}
-
-.typewriter{
-    font-size:1.3rem;
-    max-width:700px;
-    line-height:2;
-    min-height:120px;
-}
-
-.btn{
-    margin-top:30px;
-    padding:15px 30px;
-    border:none;
-    border-radius:50px;
-    background:black;
-    color:white;
-    cursor:pointer;
-    font-size:18px;
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:scale(1.1);
-}
-
-.music{
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:1000;
-}
-
-section{
-    padding:100px 10%;
-}
-
-.title{
-    text-align:center;
-    font-size:3rem;
-    margin-bottom:50px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);
-    padding:30px;
-    border-radius:20px;
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-}
-
-.flip-container{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:30px;
-    
-}
-
-.flip-card{
-    width:280px;
-    height:180px;
-    perspective:1000px;
-}
-
-.flip-inner{
-    
-    width:100%;
-    height:100%;
-    transition:1s;
-    transform-style:preserve-3d;
-    position:relative;
-}
-
-.flip-card:hover .flip-inner{
-    transform:rotateY(180deg);
-}
-
-.front,
-.back{
-    position:absolute;
-    width:100%;
-    height:100%;
-    border-radius:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-    backface-visibility:hidden;
-}
-
-.front{
-     background:#6946a6;
-}
-
-.back{
-    background:#428475;
-    transform:rotateY(180deg);
-}
-
-.reason-box{
-    text-align:center;
-}
-
-#reason{
-    font-size:1.4rem;
-    margin:30px;
-}
-
-.final{
-    max-width:800px;
-    margin:auto;
-    text-align:center;
-    line-height:2;
-}
-
+/* Updated Button Area */
 .button-area{
     position: relative;
     width: 100%;
-    max-width: 1000px;
-    height: 500px;
+    max-width: 800px;
+    height: 400px; /* হাইট কিছুটা কমিয়েছি যেন মোবাইলে কন্ট্রোল করা সহজ হয় */
     margin: 50px auto 0;
-    overflow: hidden;
+    overflow: hidden; /* বাটন বাইরে চলে যাওয়া আটকাবে */
+    touch-action: none; /* মোবাইল টাচ এর জন্য */
 }
 
-.yesBtn,
-.noBtn{
+/* Common Button Style */
+.yesBtn, .noBtn {
     position:absolute;
-
     padding:16px 38px;
     border:none;
     border-radius:60px;
-
     font-size:18px;
     font-weight:600;
-
-    background:linear-gradient(
-        135deg,
-        #ff9966,
-        #ff5e62
-    );
-
-    color:white;
-
     cursor:pointer;
     user-select:none;
     touch-action:none;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.25),
-        inset 0 1px 1px rgba(255,255,255,.25);
-
-    transition:
-        left 0.7s cubic-bezier(.22,.61,.36,1),
-        top 0.7s cubic-bezier(.22,.61,.36,1);
+    transition: all 0.4s cubic-bezier(.22,.61,.36,1);
 }
 
 /* Let's Talk */
-
 .yesBtn{
-    background:linear-gradient(
-        135deg,
-        #ff6ec4,
-        #7873f5
-    );
-
+    background:linear-gradient(135deg, #ff6ec4, #7873f5);
     color:white;
 }
+.yesBtn:hover{ transform:translateY(-4px) scale(1.05); }
 
-.yesBtn:hover{
-    transform:translateY(-4px) scale(1.05);
-
-    box-shadow:
-    0 15px 35px rgba(120,115,245,.4);
-}
-
-/* Still Angry */
-
+/* Still Angry (Updated to Black) */
 .noBtn{
-    position:absolute;
-
-    background:linear-gradient(
-        135deg,
-        #ff9966,
-        #ff5e62
-    );
-
-    color:white;
-
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-
-    box-shadow:
-    0 10px 30px rgba(255,94,98,.35);
-
-    user-select:none;
-    touch-action:none;
+    background: black; /* বাটন রঙ কালো */
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    /* পজিশনিং জাভাস্ক্রিপ্ট দিয়ে কন্ট্রোল হবে */
 }
 
-.noBtn:hover{
-    transform:translate(-50%,-50%) scale(1.08);
-}
 .heart{
     position:fixed;
     color:#ff4da6;
     animation:float 5s linear forwards;
+    pointer-events: none; /* হার্ট যেন ক্লিক বাধা না দেয় */
 }
 
 @keyframes float{
-    from{
-        transform:translateY(0);
-        opacity:1;
-    }
-    to{
-        transform:translateY(-800px);
-        opacity:0;
-    }
+    from{ transform:translateY(0); opacity:1; }
+    to{ transform:translateY(-800px); opacity:0; }
 }
