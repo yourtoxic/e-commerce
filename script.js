@@ -60,17 +60,55 @@ function newReason(){
 }
 
 
-// Angry Button Escape
+// Angry Button Escape (Desktop + Mobile)
 
 const noBtn = document.getElementById("noBtn");
+const buttonArea = document.querySelector(".button-area");
 
-noBtn.addEventListener("mouseover",()=>{
+function moveButton() {
 
-    const x = Math.random()*500;
-    const y = Math.random()*150;
+    const maxX = buttonArea.clientWidth - noBtn.offsetWidth;
+    const maxY = buttonArea.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
+}
+
+// Desktop hover
+noBtn.addEventListener("mouseenter", moveButton);
+
+// Mobile touch
+noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveButton();
+
+    if(navigator.vibrate){
+        navigator.vibrate(50);
+    }
+});
+
+// Backup click protection
+noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    moveButton();
+});
+
+// Extra desktop effect
+document.addEventListener("mousemove", (e) => {
+
+    const rect = noBtn.getBoundingClientRect();
+
+    const distance = Math.hypot(
+        e.clientX - (rect.left + rect.width / 2),
+        e.clientY - (rect.top + rect.height / 2)
+    );
+
+    if(distance < 120){
+        moveButton();
+    }
 });
 
 
@@ -111,3 +149,17 @@ function createHeart(){
 }
 
 
+// Music Toggle
+
+const music = document.getElementById("bgMusic");
+
+function toggleMusic(){
+
+    if(!music) return;
+
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+}
